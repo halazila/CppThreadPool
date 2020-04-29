@@ -70,7 +70,7 @@ public:
 			);
 		std::future<result_type> future = task->get_future();
 		{
-			lock_guard<mutex> lock{ mtxTask };
+			std::lock_guard<std::mutex> lock{ mtxTask };
 			queTask.emplace([task]() {
 				(*task)();
 				}
